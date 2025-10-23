@@ -82,7 +82,7 @@ pinMode(btn1,INPUT_PULLUP);
 pinMode(btn2,INPUT_PULLUP);
 pinMode(btn3,INPUT_PULLUP);
 pinMode(led3,OUTPUT);
-pinMODE(led2,OUTPUT);
+pinMode(led2,OUTPUT);
 pinMode(led1,OUTPUT);
 pinMode(sensorPin, INPUT);
 
