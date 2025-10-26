@@ -114,8 +114,49 @@ float sensor_volt1;
   float ratio2;
   float ppm2;
   float sensor_value2 = 0;
+  
+for (int x = 0; x < 100; x++) {
+    sensor_value1 = sensor_value1 + analogRead(MQ136_PIN);
+    sensor_value2 = sensor_value2 + analogRead(MQ137_PIN);
+    
+
+  }
+  sensor_value1 = sensor_value1 / 100.0;
+  // Convert analog reading to voltage
+  sensor_volt1 = sensor_value1 * (3.3 / 4095.0);
+  // Calculate the sensor resistance (Rs)
+  RS1 = ((3.3 * RL_VALUE1) / sensor_volt1) - RL_VALUE1;
+  // Calculate the ratio (Rs/Ro)
+  ratio1 = RS1 / RO_VALUE1;
+  // Use the logarithmic formula to get PPM
+  ppm1 = pow(10, ((log10(ratio1) - B_VALUE1) / M_VALUE1));
+
+  sensor_value2 = sensor_value2 / 100.0;
+  // Convert analog reading to voltage
+  sensor_volt2 = sensor_value2 * (3.3 / 4095.0);
+  // Calculate the sensor resistance (Rs)
+  RS2 = ((3.3 * RL_VALUE2) / sensor_volt2) - RL_VALUE2;
+  // Calculate the ratio (Rs/Ro)
+  ratio2 = RS2 / RO_VALUE2;
+  // Use the logarithmic formula to get PPM
+  ppm2 = pow(10, ((log10(ratio2) - B_VALUE2) / M_VALUE2));
 
 
+  DateTime now_00=rtc.now();
+  uint16_t r, g, b, c, colorTemp, lux;
+  tcs.getRawData(&r, &g, &b, &c);
+  colorTemp = tcs.calculateColorTemperature_dn40(r, g, b, c);
+  lux = tcs.calculateLux(r, g, b);
+
+  Serial.println(ppm1);
+  Serial.println(ppm2);
+  Serial.println(colorTemp);
+  Serial.println(lux);
+  Serial.println(r);
+  Serial.println(g);
+  Serial.println(b);
+  Serial.println(c);
+  
 bool currentState1 = digitalRead(btn2);
 bool currentState2 = digitalRead(btn3);
 bool currentState3 = digitalRead(btn4);
