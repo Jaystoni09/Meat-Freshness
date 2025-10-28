@@ -159,9 +159,7 @@ for (int x = 0; x < 100; x++) {
   
 bool currentState1 = digitalRead(btn2);
 bool currentState2 = digitalRead(btn3);
-bool currentState3 = digitalRead(btn4);
-\
-  
+
   
 if(currentState1 == pressed){
 
