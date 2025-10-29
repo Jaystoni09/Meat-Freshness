@@ -209,7 +209,7 @@ if(currentState1 == pressed){
   colorTemp = tcs.calculateColorTemperature_dn40(r, g, b, c);
   lux = tcs.calculateLux(r, g, b);
   // ppm1 stands for MQ136 and ppm2 stands for MQ137
-  if (ppm1 >= 3 || ppm2 >= 13 || colorTemp >=7000) //Set the threshold range for the Spoiled Pork Meat 
+  if (ppm1 >= 3 && ppm2 >= 13) //Set the threshold range for the Spoiled Pork Meat ppm1 stands for MQ136 while ppm2 stands for MQ137
   {
     digitalWrite(buzzer, HIGH);
 digitalWrite(led2,HIGH);
@@ -278,7 +278,7 @@ delay(2500);
   }
   }
    // ppm1 stands for MQ136 and ppm2 stands for MQ137
-  else if (ppm1 >= 2 || ppm2 >= 10 || colorTemp >=6700 ) //Set the threshold range for the not fresh Pork Meat
+  else if (ppm1 >= 2 && ppm2 >= 10 ) //Set the threshold range for the not fresh Pork Meat ppm1 stands for MQ136 while ppm2 stands for MQ137
   {
     digitalWrite(buzzer, HIGH);
     digitalWrite(led3,HIGH);
@@ -480,7 +480,7 @@ if(currentState2 == pressed){
   colorTemp = tcs.calculateColorTemperature_dn40(r, g, b, c);
   lux = tcs.calculateLux(r, g, b);
    // ppm1 stands for MQ136 and ppm2 stands for MQ137
-  if (ppm1 >= 2 || ppm2 >= 25 || colorTemp >=6800) //set the threshold range value of Spoiled Chicken Meat
+  if (ppm1 >= 2 && ppm2 >= 25 ) //set the threshold range value of Spoiled Chicken Meat ppm1 stands for MQ136 while ppm2 stands for MQ137
    {
     digitalWrite(buzzer, HIGH);
     digitalWrite(led2,HIGH);
@@ -553,8 +553,7 @@ delay(2500);
   }
   } 
    // ppm1 stands for MQ136 and ppm2 stands for MQ137
-  else if (ppm1 >= 1.5 || ppm2 >= 16 || colorTemp >=6380 ) //set the threshold range value of Not Fresh Chicken Meat
-   {
+  else if (ppm1 >= 1.5 && ppm2 >= 16) //set the threshold range value of Not Fresh Chicken Meat ppm1 stands for MQ136 while ppm2 stands for MQ137
     digitalWrite(buzzer, HIGH);
     digitalWrite(led3,HIGH);
     lcd.clear();
